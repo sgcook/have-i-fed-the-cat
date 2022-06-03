@@ -19,6 +19,11 @@ app.get('/cats/:catId', (req, res) => {
 
 app.patch('/cats/:catId', (req, res) => {
   Cat.update(req.body, {where: {id: req.params.catId } }).then(cat => res.status(200).json(cat));
-})
+});
+
+app.delete('/cats/:catId', (req, res) => {
+  const ID_TO_DELETE = req.params.catId;
+  Cat.destroy({ where: { id: ID_TO_DELETE } }).then(cat => res.status(200).json(cat));
+});
 
 module.exports = app;
